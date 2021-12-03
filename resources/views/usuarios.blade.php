@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
-    <title>Document</title>
+    <title>CRUD DE USUARIOS</title>
 </head>
-<body>
+<body style="background: #fff5d7;">
     @include('menu') 
     <div class="container mt-5">
 
@@ -25,8 +26,8 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Tipo Usuario</th>
-                @if($rol == 1 or $rol == 2)
-                <th scope="col">Activar/Desactivar</th>
+                 <th scope="col">Activar/Desactivar</th>
+                @if(($rol == 1) || ($rol == 2))
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
                 @endif
@@ -49,9 +50,9 @@
                         @endif
                     </td>
                     <td>
-                        @if($usuario->id_tipousuario != 1)
+                        @if($usuario->id_tipousuario = 1)
                         
-                        @if($rol != 3)
+                        @if(($rol != 1) || ($rol != 2) || ($rol != 3))
                         {{ Form::open(array('url' => 'usuarios/activar')) }}
                         {{ Form::hidden('id', $usuario->id_usuario)}} 
                         @if($usuario->activo)
@@ -68,7 +69,7 @@
                     </td>
 
                     	
-                    @if($rol == 2 && $usuario->id_tipousuario != 1)
+                    @if($rol == 2 )
                     <td>
                     <a href="usuarios/{{$usuario->id_usuario}}"> 
                         <button  class="btn btn-outline-warning">
@@ -80,7 +81,7 @@
                     </a>
                     </td>
                     @endif
-                    @if($rol == 1 )
+                    @if($rol == 1)
                     <td>
                     <a href="usuarios/{{$usuario->id_usuario}}"> 
                         <button  class="btn btn-outline-warning">
@@ -93,7 +94,7 @@
                     </td>
                     @endif
                    
-                    @if($usuario->id_tipousuario != 1 && $rol == 2)
+                    @if($usuario->id_tipousuario = 1 && ($rol == 2))
                     <td>
                     {{ Form::open(array('url' => 'usuarios/eliminar')) }}
                     {{ Form::hidden('id', $usuario->id_usuario)}} 
@@ -102,8 +103,8 @@
                     </td>
                     @endif
 
-                    @if($rol == 1)
-                    @if($usuario->id_tipousuario != 1)
+                    @if($rol == 1 )
+                    @if($usuario->id_tipousuario = 1)
                     <td>
                     {{ Form::open(array('url' => 'usuarios/eliminar')) }}
                     {{ Form::hidden('id', $usuario->id_usuario)}} 

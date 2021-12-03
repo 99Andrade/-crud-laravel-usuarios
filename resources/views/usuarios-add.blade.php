@@ -24,7 +24,7 @@
             <label > <strong>Clave</strong> </label><br>
             {{Form::password('clave', array('class' => 'form-control'))}} <br>
             <label > <strong>Tipo Usuario</strong></label><br>
-            {{Form::select('tipo_usuario', array(2 => 'Administrador', 3 => 'Operador'),'',array('class'=> 'form-control','required'=>true))}}
+            {{Form::select('tipo_usuario', array(1 => 'SuperUsuario',2 => 'Administrador', 3 => 'Operador'),'',array('class'=> 'form-control','required'=>true))}}
 
             {{Form::submit('Agregar',array('class' => 'btn btn-primary m-3'))}}
          {{ Form::close() }}

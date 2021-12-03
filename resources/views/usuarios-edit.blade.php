@@ -24,15 +24,17 @@
             {{Form::text('usuario', $usuario->usuario, array('class' => 'form-control'))}} 
             <label > <strong>Nueva Clave</strong> </label><br>
             {{Form::password('clave', array('class' => 'form-control'))}} <br>
-            @if($usuario->id_tipousuario != 1)
             <label > <strong>Tipo Usuario</strong></label><br>
+            @if($usuario->id_tipousuario == 1)
+            {{Form::select('tipo_usuario', array(1 => 'Super Usuario',2 => 'Administrador', 3 => 'Operador'),'2',array('class'=> 'form-control','required'=>true))}}
+            @endif
             @if($usuario->id_tipousuario == 2)
-            {{Form::select('tipo_usuario', array(2 => 'Administrador', 3 => 'Operador'),'2',array('class'=> 'form-control','required'=>true))}}
+            {{Form::select('tipo_usuario', array(1 => 'Super Usuario',2 => 'Administrador', 3 => 'Operador'),'2',array('class'=> 'form-control','required'=>true))}}
             @endif
             @if($usuario->id_tipousuario == 3)
             {{Form::select('tipo_usuario', array(2 => 'Administrador', 3 => 'Operador'),'3',array('class'=> 'form-control','required'=>true))}}
             @endif
-            @endif
+            
             {{Form::submit('Editar',array('class' => 'btn btn-primary m-3'))}}
             @if($err)
             <span class="text-danger">Ese usuario ya existe.</span>
